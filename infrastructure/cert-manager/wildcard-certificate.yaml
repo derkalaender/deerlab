@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-deerlab-de
+  namespace: cert-manager
+spec:
+  secretName: wildcard-deerlab-de-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: "*.deerlab.de"
+  dnsNames:
+    - "*.deerlab.de"
+    - "deerlab.de"
