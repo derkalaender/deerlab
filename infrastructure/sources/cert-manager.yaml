@@ -1,3 +1,4 @@
+# https://github.com/fluxcd/flux2-kustomize-helm-example/blob/96b331c8f63315590a68c18290182a66c49d2d1e/infrastructure/controllers/cert-manager.yaml
 ---
 apiVersion: v1
 kind: Namespace
@@ -5,13 +6,15 @@ metadata:
   name: cert-manager
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+kind: OCIRepository
 metadata:
   name: cert-manager
   namespace: cert-manager
 spec:
-  type: oci
   url: oci://quay.io/jetstack/charts/cert-manager
+  interval: 1h
+  ref:
+    semVer: "1.x"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -27,17 +30,13 @@ spec:
     crds: CreateReplace
     strategy:
       name: RetryOnFailure
-  chart:
-    spec:
-      chart: cert-manager
-      version: "1.19.x"
-      sourceRef:
-        kind: HelmRepository
-        name: cert-manager
-        namespace: cert-manager
+  chartRef:
+    kind: OCIRepository
+    name: cert-manager
   values:
     crds:
       enabled: true
+      keep: false
     config: # Enable Gateway API support
       apiVersion: controller.config.cert-manager.io/v1alpha1
       kind: ControllerConfiguration
