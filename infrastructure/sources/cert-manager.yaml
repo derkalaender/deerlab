@@ -11,10 +11,10 @@ metadata:
   name: cert-manager
   namespace: cert-manager
 spec:
-  url: oci://quay.io/jetstack/charts/cert-manager
   interval: 1h
+  url: oci://quay.io/jetstack/charts/cert-manager
   ref:
-    semVer: "1.x"
+    semver: "1.x"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
