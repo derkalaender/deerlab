@@ -4,14 +4,15 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    email: admin@deerlab.de
+    email: admin@deerlab.de # gets notified about expiring certificates, etc.
+    profile: tlsserver # newer and smaller
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
-      name: letsencrypt-prod-account-key
+      name: letsencrypt-prod-account-key # cert-manager stores the private key of the ACME account in this secret
     solvers:
-      - dns01:
+      - dns01: # we want to use a DNS challenge (no need to open ports 80/443)
           cloudflare:
-            apiTokenSecretRef:
+            apiTokenSecretRef: # use the cloudflare API token stored in a secret
               name: cloudflare-api-token
               key: api-token
         selector:

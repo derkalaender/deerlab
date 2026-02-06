@@ -4,11 +4,10 @@ metadata:
   name: wildcard-deerlab-de
   namespace: cert-manager
 spec:
-  secretName: wildcard-deerlab-de-tls
+  secretName: wildcard-deerlab-de-tls # this created secret will hold the TLS certificate and private key
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: "*.deerlab.de"
   dnsNames:
     - "*.deerlab.de"
     - "deerlab.de"
