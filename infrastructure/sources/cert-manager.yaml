@@ -36,7 +36,6 @@ spec:
   values:
     crds:
       enabled: true
-      keep: false
     config: # Enable Gateway API support
       apiVersion: controller.config.cert-manager.io/v1alpha1
       kind: ControllerConfiguration
