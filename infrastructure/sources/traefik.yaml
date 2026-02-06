@@ -50,7 +50,7 @@ spec:
     # Redirect HTTP to HTTPS
     ports:
       web:
-        port: :80
+        port: 80
         http:
           redirections:
             entryPoint:
@@ -58,6 +58,6 @@ spec:
               scheme: https
               permanent: true
       websecure:
-        port: :443
+        port: 443
         tls:
           enabled: true
