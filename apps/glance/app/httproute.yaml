@@ -4,8 +4,8 @@ metadata:
   name: glance
 spec:
   parentRefs:
-    - name: gateway
-      namespace: networking
+    - name: traefik
+      namespace: traefik-system
   hostnames:
     - "home.deerlab.de"
   rules:

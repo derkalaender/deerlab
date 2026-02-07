@@ -9,10 +9,6 @@ spec:
   hostnames:
     - "id.deerlab.de"
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: "/"
-      backendRefs:
+    - backendRefs:
         - name: pocket-id
           port: 80
