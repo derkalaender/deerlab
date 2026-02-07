@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - authentication
   - networking
+  - system
