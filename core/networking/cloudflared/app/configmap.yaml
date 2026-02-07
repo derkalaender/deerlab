@@ -20,7 +20,7 @@ data:
     ingress:
       # Pocket ID - identity provider for Tailscale
       - hostname: id.deerlab.de
-        service: http://pocket-id.authentication.svc.cluster.local
+        service: http://pocket-id.authentication.svc
 
       # Catch-all rule (required) - responds with 404 for unmatched requests
       - service: http_status:404
