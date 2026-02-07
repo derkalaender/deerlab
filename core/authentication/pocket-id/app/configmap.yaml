@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pocket-id-config
+  namespace: authentication
+data:
+  APP_URL: "https://id.deerlab.de"

@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: pocket-id-keys
+    namespace: authentication
+type: Opaque
+stringData:
+    ENCRYPTION_KEY: ENC[AES256_GCM,data:QieBiOWXl6mZXLyXel2livgXcsUYhU+cjoxlp/E4pJoybSwyzwXcxfP1vHU=,iv:qd+TipEkJkr1Zudg6sHkndyAGiOxUXRC401SrWuiZ+E=,tag:dqY73GfIOWSKtSEHv9XIWQ==,type:str]
+    MAXMIND_LICENSE_KEY: ""
+sops:
+    age:
+        - recipient: age1grp897uk453xrpmq6ed8qcqjwgjwm0s4usptwkkxa7ujy60cpawstq6tu5
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBBM01VdjZDMzJoRHloMkt0
+            b3JlNUFXaWQ2WGJIS0JLZUxDWUMxSTU2M2pnCndyVWhYb2swMjlaWXVHVkZGTStw
+            dTN2VU1zZG5YeURmdkR3Sk9xWDVZL3cKLS0tIGlRT3RHSmZmRmp3N1hlZHJQOWl5
+            ZDc5WmhMTU5DaDhtZzQ2UkMrK3U0YTgK5hpjoC/6gHJJmFTo03phLh8KQRtdD8wh
+            Mh6+1mH4DjffqJlh9+XDwa2bC9NUQa0K4kgadPDgEPbPggKf0FIxag==
+            -----END AGE ENCRYPTED FILE-----
+        - recipient: age1w4y2nmjdr00vz4hsa23edfa7mj7gzrk2lwvk7ysqwxv4zk6p83dqyeepmn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYTmlKclQ5b1NKVmlEK0ht
+            eUtaanQvbElwaithNXRNRzhyRnF6KzFROUM4CjNsUkptYlZjY1p4WDlVUWM1NVN6
+            SXFLdkkvUlJ6V1hEelovUHFIQTI3VzAKLS0tIE1UclJoY0VwaE8xdm9UdGlzZjAx
+            NTFQeDgvbjRiR25xdTU4MWRLc0xVelkKplHnVhZzmhPXR8F9lY1XkeYyktNgeMYf
+            5GHjV1GjR2ZvcxFWlAKHPWTHqB22npcQ++C+z6Hn4OZfZaAxTxfehw==
+            -----END AGE ENCRYPTED FILE-----
+        - recipient: age1nckzvzn0e3738wt82ckua6ne70jrd8a6lnwg95fxmy6nscujqa2spuu83e
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBmSE9DMXdibThYK0NNMkFq
+            b0NRa0NQNnpqUGppM0pxelU1MklEYTVkMEdFCjlUVE9hYlRXOGtxU3hXS1hFNWxi
+            RG1QZFdhSjNzU1R1RjNSS2orcVhRZXcKLS0tIGVDeGcwejc1K2ZyRDJhcXBvWHhS
+            alB0NEYwMHZLVmFSZkxyMEFCNTZYTHcKRm7S+MLfxG4Mw5qGITEfkWIFkl5MxDHk
+            uUHNiQvRwLjdouic5v35vVWO/ExolsdLPP9qsZdmoCXM76DUQajvDw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-02-07T13:34:33Z"
+    mac: ENC[AES256_GCM,data:6l8ju64RqwhUhkrmaOHwrGKdAq1JxP5dzSERmTn301xCY4Kf5TVD8rr83irRyFU2jp4pCn5g1ipE7anDkO+ULYc/+kVXjMHLJ6rxh6pqJkTjsqBD85IzxxJoQax5xbeSUN0vmhGl/W5kKorPl1crhMqabAAM7ssQoKQPCRnCcYQ=,iv:lDv1HPBfODqValKgVyTJb7rI1BWkiFwUYRKs2c/XWEI=,tag:i9fnKrO0oEN3QCKvm7xx4Q==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0

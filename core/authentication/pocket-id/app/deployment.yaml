@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pocket-id
+  namespace: authentication
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pocket-id
+  template:
+    metadata:
+      labels:
+        app: pocket-id
+    spec:
+      containers:
+        - name: pocket-id
+          image: ghcr.io/pocket-id/pocket-id:v2
+          ports:
+            - containerPort: 1411
+          envFrom:
+            - configMapRef:
+                name: pocket-id-config
+            - secretRef:
+                name: pocket-id-keys
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: pocket-id-data

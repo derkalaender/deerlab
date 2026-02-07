@@ -1,0 +1,46 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: traefik-system
+spec:
+  interval: 8m
+  timeout: 8m
+  chart:
+    spec:
+      interval: 15m
+      chart: traefik
+      version: "~39"
+      sourceRef:
+        kind: HelmRepository
+        name: traefik
+        namespace: flux-system
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values: # Traefik configuration
+    # Enable Kubernetes Gateway API support, disable (old) Ingress and (unneeded) Traefik Extension CRD providers
+    providers:
+      kubernetesGateway:
+        enabled: true
+      kubernetesIngress:
+        enabled: false
+      kubernetesCRD:
+        enabled: false
+    gateway:
+      enabled: false # We will create a custom Gateway resource, so we disable the default one
+    # Redirect HTTP to HTTPS
+    ports:
+      web:
+        http:
+          redirections:
+            entryPoint:
+              to: websecure
+              scheme: https
+              permanent: true
