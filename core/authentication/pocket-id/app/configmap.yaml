@@ -4,3 +4,5 @@ metadata:
   name: pocket-id-config
 data:
   APP_URL: "https://id.deerlab.de"
+  TRUST_PROXY: "true"
+  ANALYTICS_DISABLED: "true"
