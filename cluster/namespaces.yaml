@@ -7,7 +7,6 @@ spec:
   interval: 5m
   timeout: 1m
   retryInterval: 30s
-  force: true
   prune: true
   wait: true
   sourceRef:
