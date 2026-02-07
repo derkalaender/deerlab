@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared-config
+  namespace: networking
+data:
+  config.yaml: |
+    tunnel: dbda5f6e-0e5c-4707-85ae-a64453cb5acc
+    credentials-file: /etc/cloudflared/creds/credentials.json
+
+    # Serves the metrics server under /metrics and the readiness server under /ready
+    metrics: 0.0.0.0:2000
+
+    # Autoupdate doesn't make sense in Kubernetes as updates are lost on pod restart
+    no-autoupdate: true
+
+    # The ingress block tells cloudflared which local service to route incoming requests to
+    # For more about ingress rules, see:
+    # https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/local-management/configuration-file/
+    ingress:
+      # Pocket ID - identity provider for Tailscale
+      - hostname: id.deerlab.de
+        service: http://pocket-id.authentication.svc.cluster.local:1411
+
+      # Catch-all rule (required) - responds with 404 for unmatched requests
+      - service: http_status:404
