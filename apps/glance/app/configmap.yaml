@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: glance-config
+data:
+  glance.yml: |
+    server:
+      port: 8080
+      proxied: true
+
+    # Catppuccin Mocha
+    theme:
+      background-color: 240 21 15
+      contrast-multiplier: 1.2
+      primary-color: 217 92 83
+      positive-color: 115 54 76
+      negative-color: 347 70 65
+
+    pages:
+      - name: Home
+        columns:
+          - size: small
+            widgets:
+              - type: calendar
+                first-day-of-week: monday
+
+              - type: weather
+                location: Germany
+                units: metric
+                hour-format: 24h
+
+          - size: full
+            widgets:
+              - type: monitor
+                title: Services
+                cache: 1m
+                sites:
+                  - title: Pocket ID
+                    url: https://id.deerlab.de
+                    icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pocket-id-light.svg
