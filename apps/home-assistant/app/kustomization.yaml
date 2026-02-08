@@ -7,3 +7,16 @@ resources:
   - pvc.yaml
   - configmap.yaml
   - httproute.yaml
+configMapGenerator:
+  - name: home-assistant-init-files
+    files:
+      - init/automations.yaml
+      - init/configuration.yaml
+      - init/scenes.yaml
+      - init/secrets.yaml
+      - init/scripts.yaml
+  - name: home-assistant-init-script
+    files:
+      - init/init.sh
+generatorOptions:
+  disableNameSuffixHash: true

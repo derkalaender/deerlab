@@ -4,3 +4,6 @@ metadata:
   name: home-assistant-config
 data:
   TZ: "Europe/Berlin"
+  HA_TRUSTED_PROXIES: "10.42.0.0/24" # kubectl get nodes -o jsonpath='{.items[0].spec.podCIDR}'
+  HA_EXTERNAL_URL: "https://ha.deerlab.de"
+  HA_INTERNAL_URL: "http://home-assistant.apps.svc"

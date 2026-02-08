@@ -12,6 +12,19 @@ spec:
       labels:
         app: home-assistant
     spec:
+      # Init container to copy default configuration files if they don't exist yet.
+      initContainers:
+        - name: init-config
+          image: busybox:latest
+          command: ["/init.sh"]
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: init-files
+              mountPath: /config-init
+            - name: init-script
+              mountPath: /init.sh
+              subPath: init.sh
       containers:
         - name: home-assistant
           image: "ghcr.io/home-assistant/home-assistant:stable"
@@ -54,7 +67,14 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: home-assistant-config
+            claimName: home-assistant-data
+        - name: init-files
+          configMap:
+            name: home-assistant-init-files
+        - name: init-script
+          configMap:
+            name: home-assistant-init-script
+            defaultMode: 0755
         - name: localtime
           hostPath:
             path: /etc/localtime
