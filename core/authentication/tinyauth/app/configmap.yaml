@@ -7,9 +7,9 @@ data:
   PROVIDERS_POCKETID_NAME: "Pocket ID"
   DISABLE_ANALYTICS: "true"
 
-  PROVIDERS_POCKETID_AUTH_URL: "https://pocket-id.authentication.svc/authorize"
-  PROVIDERS_POCKETID_TOKEN_URL: "https://pocket-id.authentication.svc/api/oidc/token"
-  PROVIDERS_POCKETID_USER_INFO_URL: "https://pocket-id.authentication.svc/api/oidc/userinfo"
-  PROVIDERS_POCKETID_REDIRECT_URL: "https://tinyauth.authentication.svc/api/oauth/callback/pocketid"
+  PROVIDERS_POCKETID_AUTH_URL: "https://id.deerlab.de/authorize" # public; browser redirect to identity provider
+  PROVIDERS_POCKETID_TOKEN_URL: "http://pocket-id.authentication.svc/api/oidc/token" # internal
+  PROVIDERS_POCKETID_USER_INFO_URL: "http://pocket-id.authentication.svc/api/oidc/userinfo" # internal
+  PROVIDERS_POCKETID_REDIRECT_URL: "https://auth.deerlab.de/api/oauth/callback/pocketid" # public; identity provider redirects back to tinyauth after successful login
   PROVIDERS_POCKETID_SCOPES: "openid,email,profile,groups"
   OAUTH_AUTO_REDIRECT: "pocketid"
