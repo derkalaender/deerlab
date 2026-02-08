@@ -17,4 +17,4 @@ spec:
           extensionRef:
             group: traefik.io
             kind: Middleware
-            name: authentication-auth
+            name: authentication-auth@kubernetescrd
