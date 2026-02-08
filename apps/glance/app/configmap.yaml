@@ -38,3 +38,6 @@ data:
                   - title: Pocket ID
                     url: https://id.deerlab.de
                     icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pocket-id-light.svg
+                  - title: Home Assistant
+                    url: https://ha.deerlab.de
+                    icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/home-assistant-light.svg

@@ -1,0 +1,20 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: home-assistant
+spec:
+  parentRefs:
+    - name: traefik
+      namespace: traefik-system
+  hostnames:
+    - "ha.deerlab.de"
+  rules:
+    - backendRefs:
+        - name: home-assistant
+          port: 80
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: auth
