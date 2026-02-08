@@ -4,7 +4,6 @@ namespace: authentication
 resources:
   - deployment.yaml
   - service.yaml
-  - serviceaccount.yaml
   - configmap.yaml
   - secrets.sops.yaml
   - pvc.yaml
