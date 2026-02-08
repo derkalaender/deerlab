@@ -25,7 +25,7 @@ spec:
               subPath: glance.yml
           livenessProbe:
             httpGet:
-              path: /
+              path: /api/healthz
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 30
@@ -33,7 +33,7 @@ spec:
             failureThreshold: 3
           readinessProbe:
             httpGet:
-              path: /
+              path: /api/healthz
               port: 8080
             initialDelaySeconds: 5
             periodSeconds: 10
