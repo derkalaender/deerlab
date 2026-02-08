@@ -31,7 +31,7 @@ spec:
         enabled: false
       kubernetesCRD:
         enabled: true # Needed for Traefik's own CRDs, such as Middleware
-        crossNamespace: true # Allow Traefik to watch for CRDs across all namespaces, so we can define Middleware in the same namespace as the apps
+        allowCrossNamespace: true # Allow Traefik to watch for CRDs across all namespaces, so we can define Middleware in the same namespace as the apps
     gateway:
       enabled: false # We will create a custom Gateway resource, so we disable the default one
     # Redirect HTTP to HTTPS
