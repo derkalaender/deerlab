@@ -1,0 +1,13 @@
+# Needed, as Gateway API doesn't support cross-namespace references for ExtensionRef yet
+# https://github.com/traefik/traefik/issues/11126
+# https://github.com/kubernetes-sigs/gateway-api/issues/3903
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: auth
+  namespace: apps
+spec:
+  chain:
+    middlewares:
+      - name: auth
+        namespace: authentication
