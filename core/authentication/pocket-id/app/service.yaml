@@ -6,6 +6,6 @@ spec:
   selector:
     app: pocket-id
   ports:
-    - port: 80
-      targetPort: 1411
-      name: http
+    - name: http
+      port: 80
+      targetPort: http

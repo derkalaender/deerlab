@@ -4,6 +4,8 @@ metadata:
   name: pocket-id
 spec:
   replicas: 1
+  strategy:
+    type: Recreate # Needed, as Pocket ID will try to acquire a lock on startup, which fails if the old pod is still alive
   selector:
     matchLabels:
       app: pocket-id
@@ -16,7 +18,9 @@ spec:
         - name: pocket-id
           image: ghcr.io/pocket-id/pocket-id:v2
           ports:
-            - containerPort: 1411
+            - name: http
+              containerPort: 1411
+              protocol: TCP
           envFrom:
             - configMapRef:
                 name: pocket-id-config
@@ -28,7 +32,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 1411
+              port: http
             initialDelaySeconds: 10
             periodSeconds: 30
             timeoutSeconds: 5
@@ -36,7 +40,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /healthz
-              port: 1411
+              port: http
             initialDelaySeconds: 5
             periodSeconds: 10
             timeoutSeconds: 5
