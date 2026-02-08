@@ -24,14 +24,14 @@ spec:
     remediation:
       retries: 3
   values: # Traefik configuration
-    # Enable Kubernetes Gateway API support, disable (old) Ingress and (unneeded) Traefik Extension CRD providers
     providers:
       kubernetesGateway:
-        enabled: true
+        enabled: true # Use modern Kubernetes Gateway API instead of the older Ingress API
       kubernetesIngress:
         enabled: false
       kubernetesCRD:
-        enabled: false
+        enabled: true # Needed for Traefik's own CRDs, such as Middleware
+        crossNamespace: true # Allow Traefik to watch for CRDs across all namespaces, so we can define Middleware in the same namespace as the apps
     gateway:
       enabled: false # We will create a custom Gateway resource, so we disable the default one
     # Redirect HTTP to HTTPS
