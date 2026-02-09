@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: networking
 resources:
   - cloudflare-api-token.sops.yaml
-  - clusterissuer.yaml
+  - issuer.yaml

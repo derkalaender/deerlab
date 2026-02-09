@@ -6,7 +6,7 @@ spec:
   secretName: wildcard-deerlab-de-tls # this created secret will hold the TLS certificate and private key
   issuerRef:
     name: letsencrypt-prod
-    kind: ClusterIssuer
+    kind: Issuer
   dnsNames:
     - "*.deerlab.de"
     - "deerlab.de"
