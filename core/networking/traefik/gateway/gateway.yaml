@@ -21,7 +21,6 @@ spec:
         mode: Terminate
         certificateRefs: # Use the wildcard certificate created by cert-manager
           - name: wildcard-deerlab-de-tls
-            namespace: traefik-system
       allowedRoutes:
         namespaces:
           from: All
