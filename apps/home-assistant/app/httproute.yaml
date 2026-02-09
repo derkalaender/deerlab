@@ -5,7 +5,7 @@ metadata:
 spec:
   parentRefs:
     - name: traefik
-      namespace: traefik-system
+      namespace: networking
   hostnames:
     - "ha.deerlab.de"
   rules:
