@@ -4,6 +4,8 @@ metadata:
   name: home-assistant
 spec:
   replicas: 1
+  strategy:
+    type: Recreate # Fix "Please stop the existing instance before starting a new one."
   selector:
     matchLabels:
       app: home-assistant
