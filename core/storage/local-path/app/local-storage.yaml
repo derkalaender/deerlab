@@ -130,5 +130,5 @@ data:
     spec:
       containers:
       - name: helper-pod
-        image: busybox:latesst
+        image: busybox:latest
         imagePullPolicy: IfNotPresent
