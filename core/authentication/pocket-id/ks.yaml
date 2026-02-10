@@ -5,6 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
+    - name: local-path
     - name: traefik
   interval: 8m
   timeout: 8m
