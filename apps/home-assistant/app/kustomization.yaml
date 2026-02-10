@@ -6,6 +6,7 @@ resources:
   - service.yaml
   - configmap.yaml
   - httproute.yaml
+  - sonoff-zbdongle-e.yaml
 configMapGenerator:
   - name: home-assistant-init-files
     files:

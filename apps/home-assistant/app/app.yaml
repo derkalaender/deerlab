@@ -64,9 +64,11 @@ spec:
             requests:
               cpu: 100m
               memory: 256Mi
+              akri.sh/sonoff-zbdongle-e: "1"
             limits:
               cpu: 1500m
               memory: 2Gi
+              akri.sh/sonoff-zbdongle-e: "1"
       volumes:
         - name: init-files
           configMap:
