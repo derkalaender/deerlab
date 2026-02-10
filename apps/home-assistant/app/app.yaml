@@ -1,14 +1,15 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: home-assistant
 spec:
   replicas: 1
-  strategy:
-    type: Recreate # Fix "Please stop the existing instance before starting a new one."
+  service-name: home-assistant
   selector:
     matchLabels:
       app: home-assistant
+  updateStrategy:
+    type: OnDelete # Fix "Please stop the existing instance before starting a new one."
   template:
     metadata:
       labels:
@@ -20,7 +21,7 @@ spec:
           image: busybox:latest
           command: ["/init.sh"]
           volumeMounts:
-            - name: config
+            - name: data
               mountPath: /config
             - name: init-files
               mountPath: /config-init
@@ -38,7 +39,7 @@ spec:
             - configMapRef:
                 name: home-assistant-config
           volumeMounts:
-            - name: config
+            - name: data
               mountPath: /config
             - name: localtime
               mountPath: /etc/localtime
@@ -67,9 +68,6 @@ spec:
               cpu: 1500m
               memory: 2Gi
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: home-assistant-data
         - name: init-files
           configMap:
             name: home-assistant-init-files
@@ -81,3 +79,13 @@ spec:
           hostPath:
             path: /etc/localtime
             type: File
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: local-path

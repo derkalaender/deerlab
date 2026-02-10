@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: pocket-id
 spec:
+  type: ClusterIP
+  clusterIP: None
   selector:
     app: pocket-id
   ports:

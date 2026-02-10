@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: home-assistant
 spec:
+  type: ClusterIP
+  ClusterIP: None
   selector:
     app: home-assistant
   ports:

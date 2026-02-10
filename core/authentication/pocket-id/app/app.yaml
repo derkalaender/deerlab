@@ -1,35 +1,38 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: tinyauth
+  name: pocket-id
 spec:
   replicas: 1
+  serviceName: pocket-id
   selector:
     matchLabels:
-      app: tinyauth
+      app: pocket-id
+  updateStrategy:
+    type: OnDelete # Needed, as Pocket ID will try to acquire a lock on startup, which fails if the old pod is still alive
   template:
     metadata:
       labels:
-        app: tinyauth
+        app: pocket-id
     spec:
       containers:
-        - name: tinyauth
-          image: ghcr.io/steveiliop56/tinyauth:v4
+        - name: pocket-id
+          image: ghcr.io/pocket-id/pocket-id:v2
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: 1411
               protocol: TCP
           envFrom:
             - configMapRef:
-                name: tinyauth-config
+                name: pocket-id-config
             - secretRef:
-                name: tinyauth-secrets
+                name: pocket-id-keys
           volumeMounts:
             - name: data
-              mountPath: /data
+              mountPath: /app/data
           livenessProbe:
             httpGet:
-              path: /api/healthz
+              path: /healthz
               port: http
             initialDelaySeconds: 10
             periodSeconds: 30
@@ -37,7 +40,7 @@ spec:
             failureThreshold: 3
           readinessProbe:
             httpGet:
-              path: /api/healthz
+              path: /healthz
               port: http
             initialDelaySeconds: 5
             periodSeconds: 10
@@ -45,12 +48,18 @@ spec:
             failureThreshold: 3
           resources:
             requests:
-              memory: 64Mi
-              cpu: 50m
+              cpu: 100m
+              memory: 128Mi
             limits:
-              memory: 256Mi
               cpu: 500m
-      volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: tinyauth-data
+              memory: 512Mi
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: local-path
