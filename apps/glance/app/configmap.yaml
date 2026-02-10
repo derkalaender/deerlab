@@ -37,9 +37,9 @@ data:
                 sites:
                   - title: Pocket ID
                     url: https://id.deerlab.de
-                    check-url: http://pocket-id.authentication.svc
+                    check-url: http://pocket-id-web.authentication.svc
                     icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pocket-id-light.svg
                   - title: Home Assistant
                     url: https://ha.deerlab.de
-                    check-url: http://home-assistant.apps.svc/manifest.json
+                    check-url: http://home-assistant-web.apps.svc/manifest.json
                     icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/home-assistant-light.svg

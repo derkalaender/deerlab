@@ -10,5 +10,5 @@ spec:
     - "auth.deerlab.de"
   rules:
     - backendRefs:
-        - name: tinyauth
+        - name: tinyauth-web
           port: 80

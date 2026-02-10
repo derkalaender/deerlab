@@ -10,5 +10,5 @@ spec:
     - "id.deerlab.de"
   rules:
     - backendRefs:
-        - name: pocket-id
+        - name: pocket-id-web
           port: 80

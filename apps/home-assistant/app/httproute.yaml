@@ -10,7 +10,7 @@ spec:
     - "ha.deerlab.de"
   rules:
     - backendRefs:
-        - name: home-assistant
+        - name: home-assistant-web
           port: 80
       filters:
         - type: ExtensionRef
