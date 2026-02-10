@@ -4,7 +4,7 @@ metadata:
   name: tinyauth
 spec:
   type: ClusterIP
-  ClusterIP: None
+  clusterIP: None
   selector:
     app: tinyauth
   ports:
