@@ -4,7 +4,7 @@ metadata:
   name: auth
 spec:
   forwardAuth:
-    address: http://tinyauth.authentication.svc/api/auth/traefik
+    address: http://tinyauth-web.authentication.svc/api/auth/traefik
     trustForwardHeader: true
     authResponseHeaders:
       - X-Forwarded-User
