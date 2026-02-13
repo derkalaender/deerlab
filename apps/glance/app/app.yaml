@@ -18,7 +18,8 @@ spec:
         - name: glance
           image: glanceapp/glance:v0.8.4
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 8080
           volumeMounts:
             - name: config
               mountPath: /app/config/glance.yml
@@ -26,7 +27,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /api/healthz
-              port: 8080
+              port: http
             initialDelaySeconds: 10
             periodSeconds: 30
             timeoutSeconds: 5
@@ -34,7 +35,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /api/healthz
-              port: 8080
+              port: http
             initialDelaySeconds: 5
             periodSeconds: 10
             timeoutSeconds: 5
