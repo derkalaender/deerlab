@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: iot-gateway
+spec:
+  replicas: 1
+  service-name: iot-gateway
+  selector:
+    matchLabels:
+      app: iot-gateway
+  template:
+    metadata:
+      labels:
+        app: iot-gateway
+    spec:
+      hostNetwork: true
+      containers:
+        - name: multipan
+          image: docker.io/antoniocifu/ihost-multipan-docker:latest
+          securityContext:
+            privileged: true
+          env:
+            - name: DEVICE
+              value: "/dev/ttyUSB0" # sonoff zbdongle-e
+            - name: BACKBONE_IF
+              value: "enp4s0" # from `ip a`
+          ports:
+            - name: obtr-rest
+              containerPort: 8081
+            - name: obtr-web
+              containerPort: 8086
+          volumeMounts:
+            - name: multipan-data
+              mountPath: /data
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+              akri.sh/sonoff-zbdongle-e: "1"
+            limits:
+              cpu: 200m
+              memory: 256Mi
+              akri.sh/sonoff-zbdongle-e: "1"
+  volumeClaimTemplates:
+    - metadata:
+        name: multipan-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: local-path
