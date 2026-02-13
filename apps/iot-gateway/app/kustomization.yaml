@@ -3,4 +3,6 @@ kind: Kustomization
 namespace: apps
 resources:
   - app.yaml
+  - service.yaml
+  - httproute.yaml
   - sonoff-zbdongle-e.yaml
