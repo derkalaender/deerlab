@@ -4,4 +4,4 @@ resources:
   - middleware.yaml
   - glance/ks.yaml
   - home-assistant/ks.yaml
-  - iot-gateway/ks.yaml
+  # - iot-gateway/ks.yaml
