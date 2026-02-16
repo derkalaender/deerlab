@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - repos/akri.yaml
   - repos/jetstack.yaml
+  - repos/metallb.yaml
   - repos/stakater.yaml
   - repos/traefik.yaml
