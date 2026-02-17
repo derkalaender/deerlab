@@ -7,7 +7,7 @@ spec:
     - name: traefik
       namespace: networking
   hostnames:
-    - "auth.deerlab.de"
+    - "tinyauth.deerlab.de"
   rules:
     - backendRefs:
         - name: tinyauth-web
