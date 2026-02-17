@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: technitium
+spec:
+  replicas: 1
+  service-name: technitium
+  selector:
+    matchLabels:
+      app: technitium
+  template:
+    metadata:
+      labels:
+        app: technitium
+    spec:
+      containers:
+        - name: technitium
+          image: docker.io/technitium/dns-server:latest
+          # Ref.: https://github.com/TechnitiumSoftware/DnsServer/blob/master/docker-compose.yml
+          ports:
+            - name: http
+              containerPort: 5380
+              protocol: TCP
+            - name: dns-tcp
+              containerPort: 53
+              protocol: TCP
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+            - name: dns-tls
+              containerPort: 853
+              protocol: TCP
+            - name: dns-quic
+              containerPort: 853
+              protocol: UDP
+            - name: dns-https-tcp
+              containerPort: 443
+              protocol: TCP
+            - name: dns-https-udp
+              containerPort: 443
+              protocol: UDP
+          envFrom:
+            - configMapRef:
+                name: technitium-config
+          volumeMounts:
+            - name: data
+              mountPath: /etc/dns
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: local-path
