@@ -24,6 +24,8 @@ spec:
     remediation:
       retries: 3
   values: # Traefik configuration
+    service:
+      ipFamilyPolicy: PreferDualStack # Try to get IPv6 address
     providers:
       kubernetesGateway:
         enabled: true # Use modern Kubernetes Gateway API instead of the older Ingress API
