@@ -4,38 +4,38 @@ metadata:
     name: pocket-id-keys
 type: Opaque
 stringData:
-    ENCRYPTION_KEY: ENC[AES256_GCM,data:QieBiOWXl6mZXLyXel2livgXcsUYhU+cjoxlp/E4pJoybSwyzwXcxfP1vHU=,iv:qd+TipEkJkr1Zudg6sHkndyAGiOxUXRC401SrWuiZ+E=,tag:dqY73GfIOWSKtSEHv9XIWQ==,type:str]
+    ENCRYPTION_KEY: ENC[AES256_GCM,data:7RKzZFzXI9XQQFeAf+JrTnYCL64uuGlX330Cxp2N6K3zgK+sxnckfsQ2sWc=,iv:qd+TipEkJkr1Zudg6sHkndyAGiOxUXRC401SrWuiZ+E=,tag:1WRigTpK0adb6/+B2nXdeQ==,type:str]
     MAXMIND_LICENSE_KEY: ""
 sops:
     age:
         - recipient: age1grp897uk453xrpmq6ed8qcqjwgjwm0s4usptwkkxa7ujy60cpawstq6tu5
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBBM01VdjZDMzJoRHloMkt0
-            b3JlNUFXaWQ2WGJIS0JLZUxDWUMxSTU2M2pnCndyVWhYb2swMjlaWXVHVkZGTStw
-            dTN2VU1zZG5YeURmdkR3Sk9xWDVZL3cKLS0tIGlRT3RHSmZmRmp3N1hlZHJQOWl5
-            ZDc5WmhMTU5DaDhtZzQ2UkMrK3U0YTgK5hpjoC/6gHJJmFTo03phLh8KQRtdD8wh
-            Mh6+1mH4DjffqJlh9+XDwa2bC9NUQa0K4kgadPDgEPbPggKf0FIxag==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBJSkxsdEdOS3BTQ253VXJI
+            eWJ6Q1BJODNCN0pmSUVnclFlSCsvTkVNZkU4CkRuTWxGSkdTQnZ2RmlLYUlubGlC
+            cGJSQUNtNTdYbk8rZ3ovY2JjRWVsVWMKLS0tIFFCT3lZam1vN0dCWUlLcWoraEtV
+            bGV0d1R3UTZXaTlZcTZGV2MxMjF5T0UKTwj7izI+s4gpvF1EwbbPGN9WiiPVu1s2
+            uzfOR0Tv7fiWs+PyWaM3TLYAAm2e/ikP0bGcUXAh8fgj2EQ84sFUQA==
             -----END AGE ENCRYPTED FILE-----
         - recipient: age1w4y2nmjdr00vz4hsa23edfa7mj7gzrk2lwvk7ysqwxv4zk6p83dqyeepmn
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYTmlKclQ5b1NKVmlEK0ht
-            eUtaanQvbElwaithNXRNRzhyRnF6KzFROUM4CjNsUkptYlZjY1p4WDlVUWM1NVN6
-            SXFLdkkvUlJ6V1hEelovUHFIQTI3VzAKLS0tIE1UclJoY0VwaE8xdm9UdGlzZjAx
-            NTFQeDgvbjRiR25xdTU4MWRLc0xVelkKplHnVhZzmhPXR8F9lY1XkeYyktNgeMYf
-            5GHjV1GjR2ZvcxFWlAKHPWTHqB22npcQ++C+z6Hn4OZfZaAxTxfehw==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB0WGpZeW9RMmFta1JNalUy
+            NS83cU43b3BITlA1b3h1N2o3SDN2K0ZXZ3k0CmlBbWlxNWt3aUVzYkdDVXUxWGhh
+            TStCNXdtMnI0cE9zcG91WTE4T3c0VFEKLS0tIFNOemNlM0JqeUU5SSt6UEFjZXVq
+            aC8yN01YQjFMUThsZzNacXk5UW1tRDgKrtSL9BK3gRv2aj8fFumDKjbrz71o4dIb
+            FETuJn7zxR7mF5MRGiReYDlLedaeSQROkhFSP+bkUX5lBGnMoU4H7g==
             -----END AGE ENCRYPTED FILE-----
         - recipient: age1nckzvzn0e3738wt82ckua6ne70jrd8a6lnwg95fxmy6nscujqa2spuu83e
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBmSE9DMXdibThYK0NNMkFq
-            b0NRa0NQNnpqUGppM0pxelU1MklEYTVkMEdFCjlUVE9hYlRXOGtxU3hXS1hFNWxi
-            RG1QZFdhSjNzU1R1RjNSS2orcVhRZXcKLS0tIGVDeGcwejc1K2ZyRDJhcXBvWHhS
-            alB0NEYwMHZLVmFSZkxyMEFCNTZYTHcKRm7S+MLfxG4Mw5qGITEfkWIFkl5MxDHk
-            uUHNiQvRwLjdouic5v35vVWO/ExolsdLPP9qsZdmoCXM76DUQajvDw==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBxSzFIc3hvb2ZGekU4SjBF
+            M0x3am5kakNMSVZMVVBmcEhZQ29kMG5WNDBvCmhnSm5tbk8rYmtFMEcweXp0dS9n
+            MXhFVFFmVGl2TDk0TFhlNzR5SG45bncKLS0tIDc3dGpGdGlCNWhoNkdzZjU5cC9S
+            bVoxNmU3VjRLdjh4Vm84eDZFMlVwQVUKD2knJIsfYSjSG49ZBMK5jDJCV8JDwvzp
+            zNcSAjTQGks12bAjHYukgKD3k4sXDmNnft8XdNMndIVPab2bx16SWg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-02-07T14:15:31Z"
-    mac: ENC[AES256_GCM,data:A7k29KeI3QVhbGvYJcQOkmrfwT700CBECn5Y92szYUJnxy2r4s5S8Sp2EcBINBqnkSHIP9Jad+XgQMJUJF92KeSDGqIj3FVvxHWzCatDerSYDmDpmU/jQ7pttupryNZx9ioByhrl5vukYRar0ZvKrpNi4Ibn1UpRDiMsR0O2irg=,iv:Jka8uC7c8nLeMrxBtb352g99yonOH4t7NQXH8WfI2TA=,tag:q7QJvb2pqxHqLkDPbhKJcA==,type:str]
+    lastmodified: "2026-02-17T14:23:58Z"
+    mac: ENC[AES256_GCM,data:EHPo1C1cn2K6ujLXWEI/onZNHuQKSjsGy5NWjvbAzjtn1fttojjLddiSczoXVes4Lzx+Fz9IiQSm8ueFH9eSEqJpzy6+ept+ugv/EGUNOLIbA6SvSgARgCgaB3OJa8DNG80TgccRfWT099zCh9TrgVb92BYhZwqzKSrUL6fKRyk=,iv:UGKcrI/YEOONr56aDC0ZqccvsVn+S/DJIQGSs/MiKAQ=,tag:njpDXaiK1y7uUAFAyiJ6qw==,type:str]
     encrypted_regex: ^(data|stringData)$
     version: 3.11.0

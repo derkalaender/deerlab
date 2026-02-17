@@ -1,7 +1,7 @@
 keys:
   - &bitwarden age1grp897uk453xrpmq6ed8qcqjwgjwm0s4usptwkkxa7ujy60cpawstq6tu5
   - &user_marvin_shika age1w4y2nmjdr00vz4hsa23edfa7mj7gzrk2lwvk7ysqwxv4zk6p83dqyeepmn
-  - &fluxcd age1nckzvzn0e3738wt82ckua6ne70jrd8a6lnwg95fxmy6nscujqa2spuu83e
+  - &fluxcd age1wdauttvthuz6g8gjfalc3sz7wtrhnvw7cgtnfle0aeztfxzytfpqn06eeu
 creation_rules:
   - path_regex: .*.sops\.yaml$ # Only apply to .sops.yaml files
     encrypted_regex: ^(data|stringData)$ # Only encrypt data and stringData fields (so metadata remains as plaintext)
