@@ -27,7 +27,7 @@ metadata:
 spec:
   dependsOn:
     - name: traefik
-    - name: cert-manager
+    - name: cert-manager-issuer
   interval: 8m
   timeout: 8m
   retryInterval: 5m
