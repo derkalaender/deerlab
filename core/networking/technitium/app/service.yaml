@@ -33,7 +33,7 @@ spec:
   selector:
     app: technitium
     statefulset.kubernetes.io/pod-name: technitium-0
-  # ipFamilyPolicy: PreferDualStack
+  ipFamilyPolicy: PreferDualStack
   ports:
     - name: dns-tcp
       port: 53
