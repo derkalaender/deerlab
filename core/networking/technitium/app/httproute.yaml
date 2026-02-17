@@ -1,0 +1,14 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: technitium
+spec:
+  parentRefs:
+    - name: traefik
+      namespace: networking
+  hostnames:
+    - "dns.deerlab.de"
+  rules:
+    - backendRefs:
+        - name: technitium-web
+          port: 80

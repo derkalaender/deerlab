@@ -4,4 +4,5 @@ namespace: networking
 resources:
   - app.yaml
   - configmap.yaml
+  - httproute.yaml
   - service.yaml
