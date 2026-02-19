@@ -4,5 +4,6 @@ resources:
   - cert-manager/ks.yaml
   - cloudflared/ks.yaml
   - metallb/ks.yaml
+  - multus/ks.yaml
   - technitium/ks.yaml
   - traefik/ks.yaml

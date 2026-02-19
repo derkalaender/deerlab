@@ -1,0 +1,36 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: multus
+spec:
+  interval: 8m
+  timeout: 8m
+  chart:
+    spec:
+      interval: 15m
+      chart: rke2-multus
+      version: "v4.2.315"
+      sourceRef:
+        kind: HelmRepository
+        name: rke2
+        namespace: flux-system
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    # https://docs.k3s.io/networking/multus-ipams
+    config:
+      fullnameOverride: multus
+      cni_conf:
+        confDir: /var/lib/rancher/k3s/agent/etc/cni/net.d
+        binDir: /var/lib/rancher/k3s/data/cni/
+        kubeconfig: /var/lib/rancher/k3s/agent/etc/cni/net.d/multus.d/multus.kubeconfig
+        multusAutoconfigDir: /var/lib/rancher/k3s/agent/etc/cni/net.d
+    manifest:
+      dhcpDaemonSet: true # Used for provisioning IPs using DHCP

@@ -4,5 +4,6 @@ resources:
   - repos/akri.yaml
   - repos/jetstack.yaml
   - repos/metallb.yaml
+  - repos/rke2.yaml
   - repos/stakater.yaml
   - repos/traefik.yaml

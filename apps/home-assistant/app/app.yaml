@@ -12,6 +12,13 @@ spec:
     type: OnDelete # Fix "Please stop the existing instance before starting a new one."
   template:
     metadata:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |
+          [
+            { "name": "multus-macvlan-dhcp",
+              "namespace": "networking",
+              "mac": "12:f3:ea:55:52:a1" }
+          ]
       labels:
         app: home-assistant
     spec:

@@ -1,0 +1,34 @@
+# This is taken from the example at https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/examples/macvlan-pod.yml
+# Specifies a custom attachable network which gets its IP address from a DHCP server
+
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: multus-macvlan-dhcp
+spec:
+  config: |
+    {
+      "cniVersion": "1.0.0",
+      "plugins": [
+        {
+          "type": "macvlan",
+          "master": "eth0",
+          "mode": "bridge",
+          "ipam": {
+            "type": "dhcp",
+            "provide": [
+              {
+                "option": "host-name",
+                "fromArg": "K8S_POD_NAME"
+              }
+            ]
+          }
+        },
+        {
+          "type": "tuning",
+          "capabilities": {
+            "mac": true
+          }
+        }
+      ]
+    }
