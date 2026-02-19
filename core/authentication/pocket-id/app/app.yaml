@@ -8,8 +8,6 @@ spec:
   selector:
     matchLabels:
       app: pocket-id
-  updateStrategy:
-    type: OnDelete # Needed, as Pocket ID will try to acquire a lock on startup, which fails if the old pod is still alive
   template:
     metadata:
       labels:

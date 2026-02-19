@@ -8,8 +8,6 @@ spec:
   selector:
     matchLabels:
       app: home-assistant
-  updateStrategy:
-    type: OnDelete # Fix "Please stop the existing instance before starting a new one."
   template:
     metadata:
       annotations:
