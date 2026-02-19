@@ -1,5 +1,7 @@
 # This is taken from the example at https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/examples/macvlan-pod.yml
 # Specifies a custom attachable network which gets its IP address from a DHCP server
+# Using the Tuning plugin, we additionally allow specifying a custom MAC address to configure stable IP addresses on the router.
+# The Tuning plugin also enables SLAAC
 
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
@@ -28,6 +30,9 @@ spec:
           "type": "tuning",
           "capabilities": {
             "mac": true
+          },
+          "sysctl": {
+            "net.ipv6.conf.IFNAME.accept_ra": "1"
           }
         }
       ]
