@@ -32,5 +32,5 @@ spec:
         binDir: /var/lib/rancher/k3s/data/cni/
         kubeconfig: /var/lib/rancher/k3s/agent/etc/cni/net.d/multus.d/multus.kubeconfig
         multusAutoconfigDir: /var/lib/rancher/k3s/agent/etc/cni/net.d
-    manifest:
+    manifests:
       dhcpDaemonSet: true # Used for provisioning IPs using DHCP
