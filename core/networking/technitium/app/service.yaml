@@ -34,6 +34,7 @@ spec:
     app: technitium
     statefulset.kubernetes.io/pod-name: technitium-0
   ipFamilyPolicy: PreferDualStack
+  externalTrafficPolicy: Local
   ports:
     - name: dns-tcp
       port: 53
