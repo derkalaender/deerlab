@@ -63,7 +63,7 @@ spec:
             secretName: mosquitto-server-tls
         - name: ca-tls
           secret:
-            secretName: mosquitto-ca-tls
+            secretName: mosquitto-ca-secret
   volumeClaimTemplates:
     - metadata:
         name: data
