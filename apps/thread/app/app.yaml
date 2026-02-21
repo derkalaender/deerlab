@@ -35,9 +35,9 @@ spec:
             - name: FLOW_CONTROL
               value: "0"
           ports:
-            - name: obtr-rest
+            - name: otbr-rest
               containerPort: 8081
-            - name: obtr-web
+            - name: otbr-web
               containerPort: 8086
           volumeMounts:
             - name: otbr-data
