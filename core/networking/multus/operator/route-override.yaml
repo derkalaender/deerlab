@@ -1,0 +1,53 @@
+# https://github.com/redhat-nfvpe/cni-route-override/blob/master/deployments/daemonset-install.yaml
+# Modified using Claude
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: route-override
+  namespace: kube-system
+  labels:
+    tier: node
+    app: route-override
+spec:
+  selector:
+    matchLabels:
+      tier: node
+      app: route-override
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        tier: node
+        app: route-override
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+      tolerations:
+        - operator: Exists
+          effect: NoSchedule
+      initContainers:
+        - name: install-route-override
+          image: ghcr.io/redhat-nfvpe/cni-route-override:latest
+          command: ["/bin/sh", "-c"]
+          args:
+            - "cp -f /route-override /host/cni-bin/route-override"
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: cnibin
+              mountPath: /host/cni-bin
+      containers:
+        - name: pause
+          image: registry.k8s.io/pause:3.9
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "10Mi"
+            limits:
+              cpu: "10m"
+              memory: "10Mi"
+      volumes:
+        - name: cnibin
+          hostPath:
+            path: /var/lib/rancher/k3s/data/cni # k3s-specific CNI bin path

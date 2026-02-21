@@ -2,6 +2,7 @@
 # Specifies a custom attachable network which gets its IP address from a DHCP server
 # Using the Tuning plugin, we additionally allow specifying a custom MAC address to configure stable IP addresses on the router.
 # The Tuning plugin also enables SLAAC
+# The Route Override plugin removes the default gateway added by the DHCP server, which is necessary to avoid routing issues when using multiple interfaces in a pod
 
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
@@ -34,6 +35,10 @@ spec:
           "sysctl": {
             "net.ipv6.conf.IFNAME.accept_ra": "1"
           }
+        },
+        {
+          "type": "route-override",
+          "flushgateway": true
         }
       ]
     }
