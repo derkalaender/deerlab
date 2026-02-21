@@ -34,6 +34,8 @@ spec:
               value: "460800"
             - name: FLOW_CONTROL
               value: "0"
+            - name: OTBR_WEB_INTERFACE
+              value: "0.0.0.0"
           ports:
             - name: otbr-rest
               containerPort: 8081
