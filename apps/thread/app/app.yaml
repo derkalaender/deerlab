@@ -1,0 +1,98 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: thread
+spec:
+  replicas: 1
+  service-name: thread
+  selector:
+    matchLabels:
+      app: thread
+  template:
+    metadata:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |
+          [
+            { "name": "multus-macvlan-dhcp",
+              "namespace": "networking",
+              "mac": "52:b7:05:0a:08:06" }
+          ]
+      labels:
+        app: thread
+    spec:
+      containers:
+        - name: otbr
+          image: ghcr.io/ownbee/hass-otbr-docker:latest
+          securityContext:
+            privileged: true # TODO: restrict this with CAPS
+          env:
+            - name: DEVICE
+              value: "/dev/ttyUSB0" # sonoff zbdongle-e
+            - name: BACKBONE_IF
+              value: "net1" # The macvlan interface created by Multus
+          ports:
+            - name: obtr-rest
+              containerPort: 8081
+            - name: obtr-web
+              containerPort: 8086
+          volumeMounts:
+            - name: otbr-data
+              mountPath: /data/thread
+            - name: dongle
+              mountPath: /dev/ttyUSB0
+            - name: tun
+              mountPath: /dev/net/tun
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+              akri.sh/sonoff-zbdongle-e-thread: "1"
+            limits:
+              cpu: 200m
+              memory: 256Mi
+              akri.sh/sonoff-zbdongle-e-thread: "1"
+        - name: matter
+          image: ghcr.io/matter-js/python-matter-server:stable
+          volumeMounts:
+            - name: matter-data
+              mountPath: /data
+            - name: localtime
+              mountPath: /etc/localtime
+              readOnly: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+      volumes:
+        - name: dongle
+          hostPath:
+            path: /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_62acf065a5c2ef11953dc6138148b910-if00-port0 # id-based path for stable device naming
+        - name: tun
+          hostPath:
+            path: /dev/net/tun
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+            type: File
+  volumeClaimTemplates:
+    - metadata:
+        name: otbr-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: local-path
+    - metadata:
+        name: matter-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: local-path
