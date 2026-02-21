@@ -33,7 +33,10 @@ spec:
             "mac": true
           },
           "sysctl": {
-            "net.ipv6.conf.IFNAME.accept_ra": "1"
+            "net.ipv4.conf.IFNAME.forwarding": "1",
+            "net.ipv6.conf.IFNAME.forwarding": "1",
+            "net.ipv6.conf.IFNAME.accept_ra_rt_info_max_plen": "64",
+            "net.ipv6.conf.IFNAME.accept_ra": "2"
           }
         },
         {
