@@ -8,6 +8,6 @@ spec:
     discoveryDetails: |+
       groupRecursive: false
       udevRules:
-      - 'KERNEL=="ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60"', ATTRS{serial}=="62acf065a5c2ef11953dc6138148b910"'
+      - 'KERNEL=="ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{serial}=="62acf065a5c2ef11953dc6138148b910"'
   brokerProperties: {}
   capacity: 1
