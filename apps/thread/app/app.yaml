@@ -59,6 +59,9 @@ spec:
               akri.sh/sonoff-zbdongle-e-thread: "1"
         - name: matter
           image: ghcr.io/matter-js/python-matter-server:stable
+          env:
+            - name: TZ
+              value: "Europe/Berlin"
           ports:
             - name: matter-ws
               containerPort: 5580
