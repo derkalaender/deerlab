@@ -49,6 +49,9 @@ spec:
             - name: localtime
               mountPath: /etc/localtime
               readOnly: true
+            - name: mqtt-client-tls
+              mountPath: /certs/mqtt
+              readOnly: true
           livenessProbe:
             httpGet:
               path: /manifest.json
@@ -85,6 +88,13 @@ spec:
           hostPath:
             path: /etc/localtime
             type: File
+        - name: mqtt-client-tls
+          csi:
+            driver: csi.cert-manager.io
+            readOnly: true
+            volumeAttributes:
+              csi.cert-manager.io/issuer-name: mosquitto-ca-issuer
+              csi.cert-manager.io/common-name: home-assistant
   volumeClaimTemplates:
     - metadata:
         name: data
