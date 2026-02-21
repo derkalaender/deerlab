@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: technitium
-          image: docker.io/technitium/dns-server:latest
+          image: docker.io/technitium/dns-server:14.3.0
           # Ref.: https://github.com/TechnitiumSoftware/DnsServer/blob/master/docker-compose.yml
           ports:
             - name: http
