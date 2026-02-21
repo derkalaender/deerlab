@@ -30,6 +30,10 @@ spec:
               value: "/dev/ttyUSB0" # sonoff zbdongle-e
             - name: BACKBONE_IF
               value: "net1" # The macvlan interface created by Multus
+            - name: BAUDRATE
+              value: "460800"
+            - name: FLOW_CONTROL
+              value: "0"
           ports:
             - name: obtr-rest
               containerPort: 8081
