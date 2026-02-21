@@ -11,7 +11,7 @@ spec:
   rules:
     - backendRefs:
         - name: otbr
-          port: 8086
+          port: 8080
       filters:
         - type: ExtensionRef
           extensionRef:

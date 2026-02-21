@@ -23,7 +23,7 @@ spec:
       port: 8081
       targetPort: otbr-rest
     - name: otbr-web
-      port: 8086
+      port: 8080
       targetPort: otbr-web
 ---
 apiVersion: v1

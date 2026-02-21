@@ -40,7 +40,7 @@ spec:
             - name: otbr-rest
               containerPort: 8081
             - name: otbr-web
-              containerPort: 8086
+              containerPort: 8080
           volumeMounts:
             - name: otbr-data
               mountPath: /data/thread
