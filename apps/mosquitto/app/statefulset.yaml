@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mosquitto
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  service-name: mosquitto
+  selector:
+    matchLabels:
+      app: mosquitto
+  template:
+    metadata:
+      labels:
+        app: mosquitto
+    spec:
+      securityContext:
+        # Mosquitto runs as this user in the container
+        runAsNonRoot: true
+        runAsUser: 1883
+        fsGroup: 1883
+      containers:
+        - name: mosquitto
+          image: docker.io/eclipse-mosquitto:2
+          ports:
+            - name: mqtts
+              containerPort: 8883
+          readinessProbe:
+            tcpSocket:
+              port: mqtts
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: mqtts
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          volumeMounts:
+            - name: config
+              mountPath: /mosquitto/config
+            - name: data
+              mountPath: /mosquitto/data
+            - name: server-tls
+              mountPath: /certs/server
+              readOnly: true
+            - name: ca-tls
+              mountPath: /certs/ca
+              readOnly: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+      volumes:
+        - name: config
+          configMap:
+            name: mosquitto-config
+        - name: server-tls
+          secret:
+            secretName: mosquitto-server-tls
+        - name: ca-tls
+          secret:
+            secretName: mosquitto-ca-tls
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: local-path

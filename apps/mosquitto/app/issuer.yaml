@@ -1,0 +1,36 @@
+# Step 1: Self-signed bootstrap issuer
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: mosquitto-selfsigned
+spec:
+  selfSigned: {}
+
+---
+# Step 2: Root CA certificate signed by the bootstrap issuer
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: mosquitto-ca
+spec:
+  isCA: true
+  commonName: mosquitto-ca
+  secretName: mosquitto-ca-secret
+  duration: 87600h # 10 years
+  renewBefore: 720h # 30 days
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  issuerRef:
+    name: mosquitto-selfsigned
+    kind: Issuer
+
+---
+# Step 3: CA Issuer using the root CA
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: mosquitto-ca-issuer
+spec:
+  ca:
+    secretName: mosquitto-ca-secret

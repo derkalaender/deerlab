@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: mosquitto-server-cert
+spec:
+  secretName: mosquitto-server-tls
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days
+  commonName: mosquitto
+  dnsNames:
+    - mosquitto
+    - mosquitto.apps.svc
+    - mosquitto.apps.svc.cluster.local
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
+  issuerRef:
+    name: mosquitto-ca-issuer
+    kind: Issuer

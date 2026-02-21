@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mosquitto-config
+data:
+  mosquitto.conf: |
+    # --- General ---
+    persistence true
+    persistence_location /mosquitto/data/
+
+    log_dest stdout
+    log_type error
+    log_type warning
+    log_type notice
+    log_type information
+    log_timestamp true
+    log_timestamp_format %Y-%m-%dT%H:%M:%S
+
+    # --- mTLS Listener (port 8883) ---
+    listener 8883
+    # Accept MQTT v5 only; change to "3, 4, 5" to allow older clients
+    accept_protocol_versions 5
+    protocol mqtt
+
+    # TLS — cert-manager injects into /certs/server and /certs/ca
+    cafile   /certs/ca/ca.crt
+    certfile /certs/server/tls.crt
+    keyfile  /certs/server/tls.key
+
+    # Require client certificate for mutual TLS
+    require_certificate true
+    # Use the CN from the client cert as the MQTT username for ACL matching
+    use_identity_as_username true
+
+    allow_anonymous false
