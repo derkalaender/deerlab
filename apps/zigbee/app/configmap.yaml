@@ -35,3 +35,9 @@ data:
     advanced:
       log_output:
         - console
+      last_seen: ISO_8601
+
+      pan_id: GENERATE
+      ext_pan_id: GENERATE
+      network_key: GENERATE
+      channel: 25
