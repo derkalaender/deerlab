@@ -10,7 +10,7 @@ spec:
     - "zigbee.deerlab.de"
   rules:
     - backendRefs:
-        - name: zigbee
+        - name: zigbee-web
           port: 80
       filters:
         - type: ExtensionRef
