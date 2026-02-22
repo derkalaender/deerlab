@@ -1,0 +1,13 @@
+apiVersion: akri.sh/v0
+kind: Configuration
+metadata:
+  name: sonoff-zbdongle-e-zigbee
+spec:
+  discoveryHandler:
+    name: udev
+    discoveryDetails: |+
+      groupRecursive: false
+      udevRules:
+      - 'KERNEL=="ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{serial}=="d049a6c089c2ef11bab7c0138148b910"'
+  brokerProperties: {}
+  capacity: 1

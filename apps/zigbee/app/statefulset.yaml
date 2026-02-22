@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: zigbee
+spec:
+  replicas: 1
+  service-name: zigbee
+  selector:
+    matchLabels:
+      app: zigbee
+  template:
+    metadata:
+      annotations:
+        reloader.stakater.com/auto: "true"
+      labels:
+        app: zigbee
+    spec:
+      initContainers:
+        - name: yq
+          image: docker.io/mikefarah/yq:4
+          workingDir: "/app/data"
+          securityContext:
+            runAsUser: 0 # needed because zigbee runs as root by default as well
+          command: ["/bin/sh"]
+          args:
+            - -c
+            - |
+              if [ -f configuration.yaml ]
+              then
+                echo "Backing up existing configuration file to /app/data/configuration-helm-backup.yaml"
+                cp configuration.yaml configuration-helm-backup.yaml
+              else
+                echo "configuration.yaml does not exists, creating one from config map /app/data/configmap-configuration.yaml"
+                cp configmap-configuration.yaml configuration.yaml
+              fi
+
+              yq --inplace '. *= load("configmap-configuration.yaml") | del(.version) ' configuration.yaml
+              yq eval-all  '. as $item ireduce ({}; . * $item )' configmap-configuration.yaml configuration.yaml > configuration.yaml
+          volumeMounts:
+            - name: zigbee-config
+              mountPath: /app/data/configmap-configuration.yaml
+              subPath: configuration.yaml
+            - name: zigbee-data
+              mountPath: /app/data
+      containers:
+        - name: zigbee2mqtt
+          image: docker.io/koenkk/zigbee2mqtt:latest
+          env:
+            - name: TZ
+              value: "Europe/Berlin"
+            - name: Z2M_ONBOARD_NO_SERVER
+              value: "1"
+          ports:
+            - name: web
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /
+              port: web
+              initialDelaySeconds: 60
+              timeoutSeconds: 10
+              periodSeconds: 30
+            failureThreshold: 5
+          volumeMounts:
+            - name: zigbee-config
+              mountPath: /app/data/configmap-configuration.yaml
+              subPath: configuration.yaml
+            - name: zigbee-data
+              mountPath: /app/data
+            - name: dongle
+              mountPath: /dev/ttyUSB0
+            - name: mqtt-client-tls
+              mountPath: /certs/mqtt
+              readOnly: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 300Mi
+              akri.sh/sonoff-zbdongle-e-zigbee: "1"
+            limits:
+              cpu: 200m
+              memory: 600Mi
+              akri.sh/sonoff-zbdongle-e-zigbee: "1"
+      volumes:
+        - name: dongle
+          hostPath:
+            path: /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_d049a6c089c2ef11bab7c0138148b910-if00-port0 # id-based path for stable device naming
+        - name: mqtt-client-tls
+          csi:
+            driver: csi.cert-manager.io
+            readOnly: true
+            volumeAttributes:
+              csi.cert-manager.io/issuer-name: mosquitto-ca-issuer
+              csi.cert-manager.io/common-name: zigbee2mqtt
+  volumeClaimTemplates:
+    - metadata:
+        name: zigbee-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: local-path

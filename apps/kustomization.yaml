@@ -6,3 +6,4 @@ resources:
   - home-assistant/ks.yaml
   - thread/ks.yaml
   - mosquitto/ks.yaml
+  - zigbee/ks.yaml
