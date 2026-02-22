@@ -36,6 +36,8 @@ spec:
               value: "0"
             - name: OTBR_WEB_INTERFACE
               value: "0.0.0.0"
+            - name: OTBR_WEB
+              value: "0" # disable web interface, managed through home assistant
           ports:
             - name: otbr-rest
               containerPort: 8081

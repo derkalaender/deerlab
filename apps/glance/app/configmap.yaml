@@ -47,3 +47,7 @@ data:
                     url: https://ha.deerlab.de
                     check-url: http://home-assistant-web.apps.svc/manifest.json
                     icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/home-assistant-light.svg
+                  - title: Zigbee2MQTT
+                    url: https://zigbee.deerlab.de
+                    check-url: http://zigbee-web.apps.svc
+                    icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/zigbee2mqtt.svg
