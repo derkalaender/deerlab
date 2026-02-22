@@ -82,6 +82,9 @@ spec:
               memory: 600Mi
               akri.sh/sonoff-zbdongle-e-zigbee: "1"
       volumes:
+        - name: zigbee-config
+          configMap:
+            name: zigbee-config
         - name: dongle
           hostPath:
             path: /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_d049a6c089c2ef11bab7c0138148b910-if00-port0 # id-based path for stable device naming
