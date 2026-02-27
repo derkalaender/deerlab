@@ -95,18 +95,17 @@ spec:
     - metadata:
         name: otbr-data
       spec:
-        accessModes:
-          - ReadWriteOnce
+        storageClassName: longhorn
+        accessModes: [ReadWriteOnce]
         resources:
           requests:
-            storage: 1Gi
-        storageClassName: local-path
+            storage: 128Mi
+
     - metadata:
         name: matter-data
       spec:
-        accessModes:
-          - ReadWriteOnce
+        storageClassName: longhorn
+        accessModes: [ReadWriteOnce]
         resources:
           requests:
-            storage: 1Gi
-        storageClassName: local-path
+            storage: 128Mi
