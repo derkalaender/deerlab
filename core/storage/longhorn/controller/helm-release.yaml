@@ -4,7 +4,7 @@ metadata:
   name: longhorn
 spec:
   interval: 8m
-  timeout: 8m
+  timeout: 20m # extend timeout to prevent accidental uninstall
   chart:
     spec:
       interval: 15m
@@ -17,7 +17,8 @@ spec:
   install:
     crds: CreateReplace
     remediation:
-      retries: 3
+      retries: 0
+      remediateLastFailure: false
   upgrade:
     crds: CreateReplace
     cleanupOnFail: true
