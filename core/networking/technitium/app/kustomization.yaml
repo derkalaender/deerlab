@@ -6,3 +6,5 @@ resources:
   - configmap.yaml
   - httproute.yaml
   - service.yaml
+  - ns-certificate.yaml
+  - ns-certificate-secret.sops.yaml

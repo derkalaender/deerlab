@@ -1,0 +1,19 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ns-deerlab-de
+spec:
+  secretName: ns-deerlab-de-tls # this created secret will hold the TLS certificate and private key
+  issuerRef:
+    name: letsencrypt-prod
+    kind: Issuer
+  keystores:
+    pkcs12:
+      create: true
+      passwordSecretRef:
+        name: ns-deerlab-de-pkcs12-password
+        key: password
+      profile: Modern2023
+  dnsNames:
+    - "ns1.deerlab.de"
+    - "ns2.deerlab.de"

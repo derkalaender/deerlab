@@ -36,6 +36,17 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /etc/dns
+            - name: tls-p12
+              mountPath: /etc/dns/tls
+              readOnly: true
+      volumes:
+        - name: tls-p12
+          secret:
+            secretName: ns-deerlab-de-tls
+            items:
+              - key: keystore.p12
+                path: technitium.p12
+
   volumeClaimTemplates:
     - metadata:
         name: data
