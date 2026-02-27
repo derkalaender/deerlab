@@ -100,9 +100,8 @@ spec:
     - metadata:
         name: zigbee-data
       spec:
-        accessModes:
-          - ReadWriteOnce
+        storageClassName: longhorn
+        accessModes: [ReadWriteOnce]
         resources:
           requests:
             storage: 1Gi
-        storageClassName: local-path
