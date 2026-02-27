@@ -41,7 +41,7 @@ data:
                     icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pocket-id-light.svg
                   - title: Technitium
                     url: https://dns.deerlab.de
-                    check-url: http://technitium-web.networking.svc
+                    check-url: http://technitium-0.networking.svc
                     icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/technitium.svg
                   - title: Home Assistant
                     url: https://ha.deerlab.de

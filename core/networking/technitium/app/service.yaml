@@ -12,16 +12,51 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: technitium-web
+  name: technitium-0
 spec:
   type: ClusterIP
+  clusterIP: "10.70.1.100" # Needs to be stable for clustering to work, see
   selector:
     app: technitium
-    statefulset.kubernetes.io/pod-name: technitium-0
+    statefulset.kubernetes.io/pod-name: technitium-0 # Primary instance, syncs config to all other instances
+  ports:
+    # Web dashboard
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP
+    # Used for internal clustering
+    - name: cluster-http
+      port: 5380
+      targetPort: http
+      protocol: TCP
+    - name: cluster-https
+      port: 53443
+      targetPort: https
+      protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: technitium-1
+spec:
+  type: ClusterIP
+  clusterIP: "10.70.1.101"
+  selector:
+    app: technitium
+    statefulset.kubernetes.io/pod-name: technitium-1
   ports:
     - name: http
       port: 80
       targetPort: http
+      protocol: TCP
+    - name: cluster-http
+      port: 5380
+      targetPort: http
+      protocol: TCP
+    - name: cluster-https
+      port: 53443
+      targetPort: https
       protocol: TCP
 ---
 apiVersion: v1
@@ -32,7 +67,6 @@ spec:
   type: LoadBalancer
   selector:
     app: technitium
-    statefulset.kubernetes.io/pod-name: technitium-0
   ipFamilyPolicy: PreferDualStack
   externalTrafficPolicy: Local
   ports:
