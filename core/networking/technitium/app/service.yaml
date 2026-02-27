@@ -83,7 +83,6 @@ spec:
   type: LoadBalancer
   selector:
     app: technitium
-    statefulset.kubernetes.io/pod-name: technitium-0 # Until setup is done, route only to main
   ipFamilyPolicy: PreferDualStack
   externalTrafficPolicy: Local
   ports:
