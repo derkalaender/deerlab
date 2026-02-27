@@ -15,7 +15,7 @@ metadata:
   name: technitium-0
 spec:
   type: ClusterIP
-  clusterIP: "10.70.1.100" # Needs to be stable for clustering to work, see https://blog.technitium.com/2025/11/understanding-clustering-and-how-to.html
+  clusterIP: "10.70.1.100" # Needs to be stable for clustering to work, see
   selector:
     app: technitium
     statefulset.kubernetes.io/pod-name: technitium-0 # Primary instance, syncs config to all other instances
@@ -83,7 +83,6 @@ spec:
   type: LoadBalancer
   selector:
     app: technitium
-    statefulset.kubernetes.io/pod-name: technitium-0 # Until setup is done, route only to main
   ipFamilyPolicy: PreferDualStack
   externalTrafficPolicy: Local
   ports:
