@@ -8,3 +8,4 @@ resources:
   - repos/stakater.yaml
   - repos/traefik.yaml
   - repos/longhorn.yaml
+  - repos/cnpg.yaml

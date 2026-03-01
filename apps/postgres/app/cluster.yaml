@@ -1,0 +1,40 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres
+  namespace: postgres
+spec:
+  instances: 1 # Just a single node right now
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.3-standard-trixie
+
+  # Primary data volume
+  storage:
+    storageClass: longhorn-postgres
+    size: 20Gi
+
+  # Separate WAL volume: isolates WAL I/O from data I/O,
+  # protects against PGDATA filling up and crashing the primary
+  walStorage:
+    storageClass: longhorn-postgres
+    size: 5Gi
+
+  postgresql:
+    parameters:
+      shared_buffers: "256MB"
+      effective_cache_size: "512MB"
+      work_mem: "8MB"
+      maintenance_work_mem: "64MB"
+      max_connections: "100"
+      wal_compression: "on"
+      checkpoint_completion_target: "0.9"
+
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "1Gi"
+      cpu: "1500m"
+
+  primaryUpdateMethod: restart
+  primaryUpdateStrategy: unsupervised

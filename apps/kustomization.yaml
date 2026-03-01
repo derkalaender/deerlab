@@ -7,3 +7,4 @@ resources:
   - thread/ks.yaml
   - mosquitto/ks.yaml
   - zigbee/ks.yaml
+  - postgres/ks.yaml
