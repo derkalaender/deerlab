@@ -28,6 +28,14 @@ spec:
       wal_compression: "on"
       checkpoint_completion_target: "0.9"
 
+  managed:
+    roles:
+      - name: authentik
+        ensure: present
+        login: true
+        passwordSecret:
+          name: authentik-db-credentials
+
   resources:
     requests:
       memory: "512Mi"

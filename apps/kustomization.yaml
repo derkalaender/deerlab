@@ -8,3 +8,4 @@ resources:
   - mosquitto/ks.yaml
   - zigbee/ks.yaml
   - postgres/ks.yaml
+  - authentik/ks.yaml

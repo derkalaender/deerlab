@@ -3,4 +3,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - storageclass.yaml
+  - database-authentik-credentials.sops.yaml
   - cluster.yaml
+  - database-authentik.yaml
