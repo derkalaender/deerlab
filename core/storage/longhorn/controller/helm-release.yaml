@@ -33,3 +33,16 @@ spec:
           namespace: networking
       hostnames:
         - "longhorn.deerlab.de"
+
+    # memory leak and validator fail in 1.11.0
+    # https://github.com/longhorn/longhorn/releases/tag/v1.11.0
+    # https://github.com/longhorn/longhorn/issues/12573
+    image:
+      longhorn:
+        manager:
+          tag: v1.11.0-hotfix-1
+        instanceManager:
+          tag: v1.11.0-hotfix-1
+    preUpgradeChecker:
+      jobEnabled: false
+      upgradeVersionCheck: false
